@@ -1,0 +1,23 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container py-5">
+
+    <h3 class="fw-bold text-primary mb-4">{{ $profil->judul }}</h3>
+
+    <div class="card shadow-sm border-0 p-4 text-center">
+
+        @if($profil->gambar)
+            <img src="{{ asset('img/profile/'.$profil->gambar) }}"
+                 class="img-fluid mb-4"
+                 style="max-height:500px;">
+        @endif
+
+        <div class="text-start">
+            {!! nl2br(e($profil->isi)) !!}
+        </div>
+
+    </div>
+
+</div>
+@endsection
