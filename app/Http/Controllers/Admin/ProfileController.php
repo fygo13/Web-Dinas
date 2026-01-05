@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function index()
     {
         return view('admin.profil.index', [
-            'profils' => Profil::orderBy('tipe')->get(),
+            'profiles' => Profile::orderBy('tipe')->get(),
             'title' => 'Profil Dinas'
         ]);
     }
@@ -19,32 +19,32 @@ class ProfileController extends Controller
     public function edit($id)
     {
         return view('admin.profil.edit', [
-            'profil' => Profil::findOrFail($id),
+            'profile' => Profile::findOrFail($id),
             'title' => 'Edit Profil Dinas'
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $profil = Profil::findOrFail($id);
+        $profile = Profile::findOrFail($id);
 
         $request->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'gambar' => 'image|mimes:jpg,png,jpeg|max:2048'
+            'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
         if ($request->hasFile('gambar')) {
-            if ($profil->gambar && file_exists(public_path('img/profil/' . $profil->gambar))) {
-                unlink(public_path('img/profil/' . $profil->gambar));
+            if ($profile->gambar && file_exists(public_path('img/profil/' . $profile->gambar))) {
+                unlink(public_path('img/profil/' . $profile->gambar));
             }
 
             $namaGambar = time() . '_' . $request->file('gambar')->getClientOriginalName();
             $request->file('gambar')->move(public_path('img/profil'), $namaGambar);
-            $profil->gambar = $namaGambar;
+            $profile->gambar = $namaGambar;
         }
 
-        $profil->update([
+        $profile->update([
             'judul' => $request->judul,
             'isi' => $request->isi
         ]);

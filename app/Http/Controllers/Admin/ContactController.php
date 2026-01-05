@@ -8,33 +8,25 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    // =======================
-    // TAMPILKAN DATA KONTAK
-    // =======================
     public function index()
     {
-        $kontak = Kontak::latest()->get();
-        return view('admin.kontak.index', compact('kontak'));
+        return view('admin.kontak.index', [
+            'title' => 'Pesan Masuk',
+            'kontak' => Contact::latest()->get()
+        ]);
     }
 
-    // =======================
-    // DETAIL PESAN
-    // =======================
     public function show($id)
     {
-        $kontak = Kontak::findOrFail($id);
-        return view('admin.kontak.show', compact('kontak'));
+        return view('admin.kontak.show', [
+            'title' => 'Detail Pesan',
+            'kontak' => Contact::findOrFail($id)
+        ]);
     }
 
-    // =======================
-    // HAPUS PESAN
-    // =======================
     public function destroy($id)
     {
-        $kontak = Kontak::findOrFail($id);
-        $kontak->delete();
-
-        return redirect()->route('admin.kontak.index')
-                         ->with('success', 'Pesan kontak berhasil dihapus');
+        Contact::findOrFail(id)->delete();
+        return redirect()->route('admin.kontak.index')->with('success', 'Pesan berhasil dihapus.');
     }
-}
+}    

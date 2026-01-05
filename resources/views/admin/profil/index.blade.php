@@ -16,10 +16,11 @@
         @foreach($profiles as $no => $p)
         <tr>
             <td>{{ $no+1 }}</td>
-            <td class="text-capitalize">{{ $p->tipe }}</td>
+            <td class="text-capitalize">{{ str_replace('-', ' ', $p->tipe) }}</td>
             <td>{{ $p->judul }}</td>
             <td>
-                <a href="{{ route('admin.profil.edit',$p->id) }}" class="btn btn-warning btn-sm">
+                <a href="{{ route('admin.profil.edit', $p->id) }}"
+                   class="btn btn-warning btn-sm">
                     Edit
                 </a>
             </td>

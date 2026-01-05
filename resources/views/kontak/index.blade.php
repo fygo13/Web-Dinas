@@ -1,57 +1,102 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak')
-
 @section('content')
-<!-- Hero Section -->
-<section class="relative bg-cover bg-center h-64" style="background-image: url('/img/kontak.jpg');">
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <div class="relative z-10 flex items-center justify-center h-full">
-        <h1 class="text-primary text-center text-4xl font-bold">Kontak Kami</h1>
+
+<!-- HEADER -->
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold">Kontak & Pengaduan</h2>
+        <p class="mb-0">Sampaikan pertanyaan, kritik, atau pengaduan Anda</p>
     </div>
 </section>
 
-<!-- Kontak Section -->
-<section class="py-16 px-6 md:px-16 lg:px-28">
-    <div class="grid md:grid-cols-2 gap-12">
+<!-- FORM KONTAK -->
+<section class="py-5">
+    <div class="container">
 
-        <!-- Form Kontak -->
-        <div>
-            <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Kirim Pesan</h2>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-            <form action="{{ route('kontak.kirim') }}" method="POST" class="space-y-5 text-center">
-                @csrf
+        <div class="row g-4">
 
-                <div>
-                    <label class="font-semibold">Nama Lengkap</label>
-                    <input type="text" name="nama" required 
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+            <!-- INFO -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-3">Informasi Kontak</h5>
+
+                        <p>
+                            <i class="bi bi-geo-alt"></i>
+                            Jl. Contoh Alamat Dinas, Belitung
+                        </p>
+
+                        <p>
+                            <i class="bi bi-envelope"></i>
+                            info@dinasbelitung.go.id
+                        </p>
+
+                        <p>
+                            <i class="bi bi-telephone"></i>
+                            (0719) 123456
+                        </p>
+
+                        <hr>
+
+                        <p class="text-muted small">
+                            Jam Pelayanan:<br>
+                            Senin – Kamis: 07.30 – 16.00<br>
+                            Jumat: 07.30 – 11.30
+                        </p>
+                    </div>
                 </div>
+            </div>
 
-                <div>
-                    <label class="font-semibold">Email</label>
-                    <input type="email" name="email" required
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+            <!-- FORM -->
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+
+                        <h5 class="fw-bold mb-3">Form Pengaduan</h5>
+
+                        <form action="{{ route('kontak.store') }}" method="POST">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label class="form-label">Nama Lengkap</label>
+                                <input type="text" name="nama"
+                                       class="form-control"
+                                       value="{{ old('nama') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email"
+                                       class="form-control"
+                                       value="{{ old('email') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Pesan</label>
+                                <textarea name="pesan" rows="5"
+                                          class="form-control"
+                                          required>{{ old('pesan') }}</textarea>
+                            </div>
+
+                            <button class="btn btn-primary">
+                                <i class="bi bi-send"></i> Kirim Pesan
+                            </button>
+
+                        </form>
+
+                    </div>
                 </div>
+            </div>
 
-                <div>
-                    <label class="font-semibold">Subjek</label>
-                    <input type="text" name="subjek" required
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-                </div>
-
-                <div>
-                    <label class="font-semibold">Pesan</label>
-                    <textarea name="pesan" rows="5" required
-                              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
-
-                <button type="submit" 
-                        class="bg-blue-600 hover:bg-blue-700 text-dark px-6 py-2 rounded-lg shadow">
-                    Kirim Pesan
-                </button>
-            </form>
         </div>
     </div>
 </section>
+
 @endsection

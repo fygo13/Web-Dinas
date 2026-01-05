@@ -9,12 +9,25 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('kontak.index');
+        return view('kontak.index', [
+            'title' => 'Kontak Kami'
+        ]);
     }
 
-    public function kirim(Request $request)
+    public function store(Request $request)
     {
-        // proses pesan, simpan ke database atau kirim email
-        return back()->with('success', 'Pesan berhasil dikirim!');
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email',
+            'pesan' => 'required|string',
+        ]);
+
+        Contact::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'pesan' => $request->pesan,
+        ]);
+
+        return redirect()->back()->with('success', 'Pesan Anda telah terkirim. Terima kasih!');
     }
 }

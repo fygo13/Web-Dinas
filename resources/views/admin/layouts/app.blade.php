@@ -47,7 +47,7 @@
         <ul class="nav flex-column">
             <li class="nav-item"><a href="/admin" class="nav-link">Dashboard</a></li>
             <li class="nav-item"><a href="/admin/slide" class="nav-link">Slide</a></li>
-            <li class="nav-item"><a href="/admin/profile" class="nav-link">Profil</a></li>
+            <li class="nav-item"><a href="/admin/profil" class="nav-link">Profil</a></li>
             <li class="nav-item"><a href="/admin/berita" class="nav-link">Berita</a></li>
             <li class="nav-item"><a href="/admin/galeri" class="nav-link">Galeri</a></li>
             <li class="nav-item"><a href="/admin/layanan" class="nav-link">Layanan</a></li>

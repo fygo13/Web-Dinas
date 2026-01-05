@@ -33,9 +33,9 @@ Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index')
 // LAYANAN
 Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
 
-// KONTAK / PENGADUAN
+// KONTAK & Kirim PESAN
 Route::get('/kontak', [ContactController::class, 'index'])->name('kontak.index');
-Route::post('/kontak/kirim', [ContactController::class, 'kirim'])->name('kontak.kirim');
+Route::post('/kontak/kirim', [ContactController::class, 'store'])->name('kontak.store');
 
 // PROFIL (Dropdown 3 Menu)
 Route::prefix('profil')->name('profil.')->group(function () {
@@ -89,6 +89,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // KONTAK
     Route::get('/kontak', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('kontak.index');
     Route::get('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'show'])->name('kontak.show');
-    Route::delete('/kontak/delete/{id}', [App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('kontak.delete');
+    Route::delete('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('kontak.delete');
 
 });

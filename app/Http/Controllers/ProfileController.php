@@ -10,7 +10,7 @@ class ProfileController extends Controller
     public function sejarah()
     {
         return view('profile.sejarah', [
-            'profile' => Profile::where('type', 'sejarah')->firstOrFail(),
+            'profile' => Profile::where('tipe', 'sejarah')->firstOrFail(),
             'title' => 'Sejarah Dinas'
         ]);
     }
@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function struktur()
     {
         return view('profile.struktur', [
-            'profile' => Profile::where('type', 'struktur')->firstOrFail(),
+            'profile' => Profile::where('tipe', 'struktur')->firstOrFail(),
             'title' => 'Struktur Organisasi'
         ]);
     }
@@ -26,7 +26,7 @@ class ProfileController extends Controller
     public function visiMisi()
     {
         return view('profile.visi-misi', [
-            'profile' => Profile::where('type', 'visi-misi')->firstOrFail(),
+            'profile' => Profile::where('tipe', 'visi-misi')->firstOrFail(),
             'title' => 'Visi & Misi'
         ]);
     }

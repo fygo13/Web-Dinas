@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('type'); // sejarah, struktur, visi_misi
+            $table->string('tipe'); // sejarah, struktur, visi_misi
             $table->string('judul');
             $table->text('isi');
             $table->string('gambar')->nullable();
