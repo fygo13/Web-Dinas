@@ -2,17 +2,10 @@
 
 @section('content')
 
-<!-- HEADER -->
-<section class="bg-primary text-white py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold">Galeri</h2>
-        <p class="mb-0">Dokumentasi kegiatan Dinas Kabupaten Belitung</p>
-    </div>
-</section>
-
-<!-- GALERI -->
 <section class="py-5">
     <div class="container">
+
+        <h3 class="fw-bold text-primary mb-4 text-center">Galeri Foto</h3>
 
         <div class="row g-4">
             @forelse($galeri as $g)

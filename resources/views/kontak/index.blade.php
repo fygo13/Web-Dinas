@@ -10,7 +10,7 @@
     </div>
 </section>
 
-<!-- FORM KONTAK -->
+<!-- KONTAK -->
 <section class="py-5">
     <div class="container">
 
@@ -48,7 +48,7 @@
                         <p class="text-muted small">
                             Jam Pelayanan:<br>
                             Senin – Kamis: 07.30 – 16.00<br>
-                            Jumat: 07.30 – 11.30
+                            Jumat: 07.30 – 16.30
                         </p>
                     </div>
                 </div>

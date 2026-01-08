@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Admin Controllers
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
@@ -58,6 +59,10 @@ require __DIR__.'/auth.php';
 // Admin
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
+    // Login
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('admin.login.submit');
+
     // Dashboard Admin
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
@@ -90,5 +95,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/kontak', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('kontak.index');
     Route::get('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'show'])->name('kontak.show');
     Route::delete('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('kontak.delete');
+
+    // Logout
+    Route::post('/logout', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
 
 });
