@@ -66,7 +66,7 @@
             <div class="d-flex align-items-center gap-3">
                 <span>Halo, {{ auth()->user()->name }}</span>
 
-                <form action="{{ route('admin.logout') }}" method="POST" class="m-0">
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
                     @csrf
                     <button type="submit" class="btn btn-sm btn-outline-danger" onClick="return confirm('Yakin ingin logout?')">Logout</button>
                 </form>
